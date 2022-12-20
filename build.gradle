@@ -1,0 +1,60 @@
+buildscript {    // Configuration for building
+  repositories {
+    jcenter()    // Bintray's repository - a fast Maven Central mirror & more
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'com.google.cloud.tools:appengine-gradle-plugin:2.4.3' // If a newer version is available, use it
+  }
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.7.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+
+
+group = 'com.hack.diversity.dimentions'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.h2database:h2'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'junit:junit:4.12'
+    implementation 'org.junit.jupiter:junit-jupiter-api:5.6.3'
+    implementation 'org.junit.jupiter:junit-jupiter-engine:5.6.3'
+    implementation 'org.mockito:mockito-core:3.6.0'
+    implementation 'org.mockito:mockito-junit-jupiter:3.8.0'
+    implementation(group: 'org.mockito', name:'mockito-inline', version:'2.28.1')
+    //implementation 'org.kie:kie-ci:8.31.1.Final'
+    implementation 'org.drools:drools-decisiontables:7.59.0.Final'
+    implementation 'org.drools:drools-core:7.59.0.Final'
+    implementation 'org.kie:kie-spring:7.59.0.Final'
+    implementation 'org.drools:drools-compiler:7.59.0.Final'
+    //implementation 'org.apache.poi:poi:5.2.3'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
